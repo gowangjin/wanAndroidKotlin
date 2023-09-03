@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/navigation_bottom_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/main_bottom_menu"
+            android:background="@color/white"
+            app:itemIconTint="@drawable/selector_bottom_navigation"
+            app:itemTextColor="@drawable/selector_bottom_navigation"
+            android:orientation="horizontal"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
