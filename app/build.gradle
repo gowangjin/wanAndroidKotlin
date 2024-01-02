@@ -5,6 +5,9 @@ apply from: '../dependencies.gradle'
 
 android {
     namespace 'com.example.wanandroidkotlin'
+    defaultConfig {
+        applicationId "com.example.wanandroidkotlin"
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -14,4 +17,6 @@ android {
 }
 
 dependencies {
+    implementation project(':CommonLibary')
+    implementation project(':module_home')
 }
