@@ -11,7 +11,7 @@ import com.example.commonlibary.util.LogUtil
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     private val TAG = this.javaClass.simpleName
-    lateinit var mBinding : T
+    protected lateinit var mBinding : T
     abstract fun getLayoutId() : Int
     override fun onCreateView(
         inflater: LayoutInflater,

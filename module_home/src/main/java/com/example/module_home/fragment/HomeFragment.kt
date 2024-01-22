@@ -8,6 +8,4 @@ class HomeFragment :BaseFragment<FragmentHomeBinding>(){
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
     }
-
-
 }
