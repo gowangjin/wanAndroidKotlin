@@ -26,6 +26,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        LogUtil.d(TAG,"onDestroy")
         mBinding.unbind()
     }
 }

@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 apply from: '../dependencies.gradle'
 
@@ -11,5 +12,6 @@ android {
 }
 
 dependencies {
-    api project(':CommonLibary')
+    api project(':commonLibary')
+    implementation 'androidx.core:core-ktx:+'
 }
