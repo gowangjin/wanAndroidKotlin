@@ -8,16 +8,17 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
 import com.example.commonlibary.util.LogUtil
 import kotlin.math.log
 import kotlin.math.sign
 
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding,VM : BaseViewModel> : AppCompatActivity() {
     companion object{
         private const val TAG = "BaseActivity"
     }
-
     private lateinit var mBinding : T
+    private lateinit var mViewModel: BaseViewModel
 
     abstract fun getLayoutId() : Int
 
@@ -25,6 +26,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setCustomDensity()
         mBinding = DataBindingUtil.setContentView(this,getLayoutId())
+        initViewModel()
     }
 
     private var sNoscompatDensity = 0F
@@ -55,9 +57,19 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
         appDisplayMetrics.densityDpi = targetDensityDip
     }
 
+    private fun initViewModel(){
+        providerVMClass().let {
+            mViewModel = ViewModelProvider(this)[it]
+            lifecycle.addObserver(mViewModel)
+        }
+    }
+
+    protected abstract fun providerVMClass():Class<VM>
+
     override fun onDestroy() {
         super.onDestroy()
         LogUtil.d(TAG,"onDestroy")
         mBinding.unbind()
+        lifecycle.removeObserver(mViewModel)
     }
 }

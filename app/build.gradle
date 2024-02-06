@@ -20,5 +20,4 @@ android {
 dependencies {
     implementation project(':commonLibary')
     implementation project(':module_home')
-    implementation 'androidx.core:core-ktx:+'
 }

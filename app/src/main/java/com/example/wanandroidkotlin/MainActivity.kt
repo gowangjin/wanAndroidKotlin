@@ -12,14 +12,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.commonlibary.base.BaseActivity
 import com.example.wanandroidkotlin.databinding.MainActivityBinding
+import com.example.wanandroidkotlin.logic.MainActivityViewModel
 import com.example.wanandroidkotlin.ui.theme.WanAndroidKotlinTheme
 
-class MainActivity : BaseActivity<MainActivityBinding>() {
+class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
     override fun getLayoutId(): Int {
         return R.layout.main_activity
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun providerVMClass(): Class<MainActivityViewModel> {
+        return MainActivityViewModel::class.java
     }
 }

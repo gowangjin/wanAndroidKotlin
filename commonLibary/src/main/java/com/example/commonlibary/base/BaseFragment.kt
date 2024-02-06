@@ -38,7 +38,7 @@ abstract class BaseFragment<VD : ViewDataBinding,VM : BaseViewModel> : Fragment(
         }
     }
 
-    open fun providerVMClass():Class<VM>? = null
+    protected abstract fun  providerVMClass():Class<VM>
 
     override fun onDestroy() {
         super.onDestroy()

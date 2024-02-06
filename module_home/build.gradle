@@ -13,5 +13,4 @@ android {
 
 dependencies {
     api project(':commonLibary')
-    implementation 'androidx.core:core-ktx:+'
 }
