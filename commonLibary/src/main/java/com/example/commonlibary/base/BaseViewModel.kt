@@ -1,11 +1,9 @@
 package com.example.commonlibary.base
 
-import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.example.commonlibary.util.LogUtil
-
 /**
  * LifeCycle是一个可以感知宿主生命周期变化的组件.常见的宿主包括Activity/Fragment,Service和Application
  * LifeCycle会持有宿主的生命周期状态信息,当宿主生命周期发生变化时,会通知到监听的宿主的观察者
@@ -13,7 +11,7 @@ import com.example.commonlibary.util.LogUtil
  * 系统组件指：Activity/Fragment、Service 和 Application。
  * 观察者：LifecycleObserver
  */
-abstract class BaseViewModel() :ViewModel(), DefaultLifecycleObserver {
+abstract class BaseViewModel :ViewModel(), DefaultLifecycleObserver {
     private val TAG = "BaseViewModel"
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
