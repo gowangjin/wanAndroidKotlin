@@ -17,8 +17,8 @@ abstract class BaseActivity<T : ViewDataBinding,VM : BaseViewModel> : AppCompatA
     companion object{
         private const val TAG = "BaseActivity"
     }
-    private lateinit var mBinding : T
-    private lateinit var mViewModel: BaseViewModel
+    lateinit var mBinding : T
+    lateinit var mViewModel: BaseViewModel
 
     abstract fun getLayoutId() : Int
 
