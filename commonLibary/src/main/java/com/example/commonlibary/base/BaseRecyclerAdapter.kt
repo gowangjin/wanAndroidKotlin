@@ -1,5 +1,6 @@
 package com.example.commonlibary.base
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -7,22 +8,32 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLayoutId : Int,val variableId : Int) :
+open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLayoutId : Int,
+                                                          private val variableId : Int) :
     RecyclerView.Adapter<BaseRecyclerViewHolder>() {
-    private  var mDataList : List<Data> ?= null
+    private var mDataList : MutableList<Data> = arrayListOf()
+    private lateinit var mDataBinding: VB
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val dataBinding : VB = DataBindingUtil.inflate(layoutInflater,itemLayoutId,parent,false)
-        return BaseRecyclerViewHolder(dataBinding.root)
+        mDataBinding = DataBindingUtil.inflate(layoutInflater,itemLayoutId,parent,false)
+        return BaseRecyclerViewHolder(mDataBinding.root)
     }
 
     override fun getItemCount(): Int {
-        return mDataList?.size ?: 0
+        return mDataList.size
     }
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
         val binding : VB? = DataBindingUtil.getBinding(holder.itemView)
-        val data = mDataList?.get(position)
+        val data = mDataList[position]
         binding?.setVariable(variableId,data)
+        binding?.executePendingBindings()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: MutableList<Data>){
+        this.mDataList.clear()
+        this.mDataList.addAll(data)
+        notifyDataSetChanged()
     }
 }

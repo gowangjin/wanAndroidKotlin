@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_start">10dp</dimen>
+    <dimen name="margin_end">10dp</dimen>
+    <dimen name="title_size">18sp</dimen>
+    <dimen name="time_size">12sp</dimen>
+    <dimen name="margin_top">6dp</dimen>
+    <dimen name="margin_bottom">6dp</dimen>
+</resources>

@@ -2,6 +2,7 @@ package logic.model
 
 import androidx.lifecycle.MutableLiveData
 import com.example.commonlibary.base.BaseViewModel
+import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.Banner
 import com.example.commonlibary.gson.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,11 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor() : BaseViewModel() {
     @Inject
     lateinit var mRepository : HomeRepository
-    public fun requestBanner(): MutableLiveData<Response<Banner>> {
+    fun requestBanner(): MutableLiveData<Response<List<Banner>>> {
         return mRepository.requestBanner()
+    }
+
+    fun requestHomeArticle(page : Int):MutableLiveData<Response<ArticleBean>>{
+        return mRepository.requestHomeArticle(page)
     }
 }
