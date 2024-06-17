@@ -17,3 +17,4 @@ rootProject.name = "WanAndroidKotlin"
 include ':app'
 include ':commonLibary'
 include ':module_home'
+include ':module_project'

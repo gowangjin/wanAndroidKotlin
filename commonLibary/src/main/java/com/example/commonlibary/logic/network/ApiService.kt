@@ -2,6 +2,7 @@ package com.example.commonlibary.logic.network
 
 import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.Banner
+import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.gson.Response
 import io.reactivex.Observable
 import retrofit2.Call
@@ -21,4 +22,12 @@ interface ApiService {
 
     @GET("article/list/{page}/json")
     fun getArticle(@Path("page")page:Int):Call<Response<ArticleBean>>
+
+    /**
+     * 项目分类
+     * 这里使用协程的挂起函数，就不需要使用Call 回调
+     *注意，这里使用到suspend
+     */
+    @GET("project/tree/json")
+    suspend fun getProjectTree():Response<List<ProjectTreeBean>>
 }

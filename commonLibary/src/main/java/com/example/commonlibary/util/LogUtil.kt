@@ -5,7 +5,7 @@ import android.util.Log
 object LogUtil {
     @JvmStatic
     fun d(tag : String,msg : String){
-        Log.d(tag, msg)
+        Log.d(tag, "${Thread.currentThread()},$msg")
     }
 
     @JvmStatic

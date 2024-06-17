@@ -1,0 +1,19 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+apply from: '../dependencies.gradle'
+
+android {
+    namespace 'com.example.module_project'
+    dataBinding  {
+        enabled = true
+    }
+}
+
+dependencies {
+    api project(':commonLibary')
+    implementation 'io.github.youth5201314:banner:2.2.3'
+}

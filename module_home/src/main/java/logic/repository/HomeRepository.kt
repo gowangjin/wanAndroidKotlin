@@ -46,7 +46,7 @@ class HomeRepository  @Inject constructor() : BaseRepository() {
                 call: Call<Response<ArticleBean>>,
                 response: retrofit2.Response<Response<ArticleBean>>
             ) {
-                articleLiveData.postValue(response.body())
+                articleLiveData.value = response.body()
                 LogUtil.d(TAG,"onResponse ${response.message()}")
             }
 
@@ -57,4 +57,6 @@ class HomeRepository  @Inject constructor() : BaseRepository() {
         })
         return articleLiveData
     }
+
+
 }
