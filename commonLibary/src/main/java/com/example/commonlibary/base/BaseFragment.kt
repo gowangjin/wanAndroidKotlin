@@ -32,7 +32,7 @@ abstract class BaseFragment<VD : ViewDataBinding,VM : BaseViewModel> : Fragment(
     }
 
     private fun initViewModel(){
-        providerVMClass()?.let {
+        providerVMClass().let {
             mViewModel = ViewModelProvider(this).get(it)
             lifecycle.addObserver(mViewModel)
         }

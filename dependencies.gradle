@@ -45,6 +45,7 @@ dependencies {
     def glide_version = "4.16.0"
     def smart_refresh_layout_version = "2.0.6"
     def coroutines_version = "1.5.1"
+    def ktx_version = "1.8.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.core:core-ktx:1.8.0'
@@ -76,6 +77,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     // 协程 Android 支持库
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    //viewModel 扩展
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$ktx_version"
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation  "io.github.scwang90:refresh-layout-kernel:$smart_refresh_layout_version"      //核心必须依赖
     implementation  "io.github.scwang90:refresh-header-classics:$smart_refresh_layout_version"    //经典刷新头

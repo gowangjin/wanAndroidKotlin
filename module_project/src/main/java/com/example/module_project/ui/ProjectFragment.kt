@@ -28,6 +28,6 @@ class ProjectFragment @Inject constructor(): BaseFragment<FragmentProjectBinding
         super.onViewCreated(view, savedInstanceState)
         mViewModel.mProjectTreeLiveData.observe(viewLifecycleOwner
         ) { value -> LogUtil.d(TAG, "getProjectTree ${value.size}") }
-        mViewModel.getProjectTreeByCoroutine()
+        mViewModel.getProjectTreeByViewModelScope()
     }
 }
