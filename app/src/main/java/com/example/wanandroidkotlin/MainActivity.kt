@@ -1,11 +1,13 @@
 package com.example.wanandroidkotlin
 
+import android.graphics.Color
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.commonlibary.base.BaseActivity
-import com.example.commonlibary.base.BaseFragment
 import com.example.commonlibary.util.LogUtil
 import com.example.module_home.ui.HomeFragment
 import com.example.module_project.ui.ProjectFragment
@@ -32,6 +34,7 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogUtil.d(TAG, "onCreate: ")
+        window.statusBarColor = ContextCompat.getColor(this, com.example.commonlibary.R.color.color_ff227bfa)
         val fragmentList = arrayListOf<Fragment>()
         fragmentList.add(mHomeFragment)
         fragmentList.add(mProjectFragment)

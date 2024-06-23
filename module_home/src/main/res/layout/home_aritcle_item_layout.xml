@@ -50,7 +50,7 @@
             android:layout_marginStart="@dimen/margin_start"
             android:layout_marginBottom="@dimen/margin_bottom"
             android:textSize="@dimen/time_size"
-            android:textColor="@color/ff227bfa"
+            android:textColor="@color/color_ff227bfa"
             android:text="@{Bean.superChapterName}"/>
 
         <View
