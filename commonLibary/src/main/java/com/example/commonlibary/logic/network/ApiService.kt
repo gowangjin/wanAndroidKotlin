@@ -8,6 +8,7 @@ import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Retrofit 的接口文件,建议以具体的功能类名开头,并以Service结尾
@@ -30,4 +31,11 @@ interface ApiService {
      */
     @GET("project/tree/json")
     suspend fun getProjectTree():Response<List<ProjectTreeBean>>
+
+    /**
+     * 获取项目中的文章
+     * https://www.wanandroid.com/project/list/1/json?cid=294
+     */
+    @GET("project/list/{page}/json")
+    suspend fun getProjectArticle(@Path("page")page: Int,@Query("cid")cid:Int):Response<ArticleBean>
 }

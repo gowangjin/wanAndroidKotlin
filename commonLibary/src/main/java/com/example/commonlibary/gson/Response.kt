@@ -24,7 +24,7 @@ data class Banner(
 
 
 /**
- * 首页文章
+ * 文章
  */
 data class ArticleBean(
     val curPage: Int,

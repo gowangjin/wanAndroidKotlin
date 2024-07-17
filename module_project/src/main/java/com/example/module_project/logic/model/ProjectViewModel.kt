@@ -29,7 +29,7 @@ class ProjectViewModel @Inject constructor() : BaseViewModel() {
             mProjectTreeLiveData.value = projectTreeBeanList
         }
     }
-    fun getProjectTreeByViewModelScope(){
+    fun getProjectTreeByViewModelScope() {
         viewModelScope.launch {
             LogUtil.d(TAG,"getProjectTree")
             val projectTreeBeanList = mRepository.getProjectTree().data
@@ -37,4 +37,10 @@ class ProjectViewModel @Inject constructor() : BaseViewModel() {
         }
     }
 
+    fun getProjectArticleByViewModelScope(page:Int,cid:Int){
+        viewModelScope.launch {
+            val articleBean = mRepository.getProjectArticle(page,cid)
+            LogUtil.d(TAG,"articleBean $articleBean")
+        }
+    }
 }

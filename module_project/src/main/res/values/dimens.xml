@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="project_child_height">154dp</dimen>
+    <dimen name="project_article_image_width">80dp</dimen>
+    <dimen name="project_article_image_height">130dp</dimen>
+    <dimen name="dimen_px_dp_20">20dp</dimen>
+    <dimen name="dimen_px_dp_30">30dp</dimen>
+    <dimen name="dimen_px_dp_10">10dp</dimen>
+    <dimen name="dimen_px_dp_13">13dp</dimen>
+</resources>

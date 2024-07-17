@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="data"
+            type="com.example.commonlibary.gson.ArticleDetailBean" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/project_child_height">
+        <ImageView
+            android:id="@+id/iv_article"
+            android:layout_width="@dimen/project_article_image_width"
+            android:layout_height="@dimen/project_article_image_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/margin_start"/>
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_article"
+            app:layout_constraintTop_toTopOf="@id/iv_article"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/dimen_px_dp_20"
+            android:textSize="@dimen/title_size"
+            android:maxLines="1"
+            android:layout_marginEnd="@dimen/dimen_px_dp_30"
+            android:textColor="@color/color_ff101010"
+            android:ellipsize="end"
+            android:text="@{data.title}"
+            tools:text="Android端FMODSoundTouch音频哈哈哈哈哈哈"/>
+
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="@dimen/dimen_px_dp_71"
+            android:layout_marginTop="@dimen/dimen_px_dp_10"
+            android:textColor="@color/color_ff8a8a8a"
+            android:textSize="@dimen/content_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintTop_toBottomOf="@id/text_title"
+            android:ellipsize="end"
+            android:text="@{data.desc}"
+            tools:text="Android端基于FMOD/SoundTouch的简单音频变声解决方案。1.FmodSound库提供了基于FMOD的7种变声方案。 2.SoundTouch库提供了" />
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/text_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dimen_px_dp_13"
+            tools:text="2021年8月11日 11:23"
+            android:text="@{data.niceDate}"
+            android:textColor="@color/color_ffc8c8c8"
+            android:textSize="@dimen/dimen_px_sp_12"/>
+        <TextView
+            android:id="@+id/text_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/text_time"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dimen_px_dp_13"
+            tools:text="iDeMonnnnnn"
+            android:text="@{data.author}"
+            android:layout_marginStart="@dimen/dimen_px_dp_18"
+            android:textColor="@color/color_ffc8c8c8"
+            android:textSize="@dimen/dimen_px_sp_12"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

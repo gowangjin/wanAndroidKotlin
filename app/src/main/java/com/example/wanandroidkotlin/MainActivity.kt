@@ -39,6 +39,7 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
         fragmentList.add(mHomeFragment)
         fragmentList.add(mProjectFragment)
         mMainViewPagerAdapter = MainViewPagerAdapter(this,fragmentList)
+        mBinding.viewPager.isUserInputEnabled = false
         mBinding.viewPager.adapter = mMainViewPagerAdapter
         mBinding.bottomNavi.setOnItemSelectedListener {
             LogUtil.d(TAG,"setOnItemSelectedListener ${it.itemId}")
