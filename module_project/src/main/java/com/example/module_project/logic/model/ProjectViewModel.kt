@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewModelScope
 import com.example.commonlibary.base.BaseViewModel
+import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.util.LogUtil
 import com.example.module_project.logic.repository.ProjectRepository
@@ -22,6 +23,7 @@ class ProjectViewModel @Inject constructor() : BaseViewModel() {
     @Inject
     lateinit var mRepository: ProjectRepository
     val mProjectTreeLiveData : MutableLiveData<List<ProjectTreeBean>> = MutableLiveData()
+    val mProjectArticleLiveData : MutableLiveData<ArticleBean> = MutableLiveData();
     fun getProjectTreeByCoroutine(){
         CoroutineScope(Dispatchers.Main).launch {
             LogUtil.d(TAG,"getProjectTree")
@@ -40,6 +42,9 @@ class ProjectViewModel @Inject constructor() : BaseViewModel() {
     fun getProjectArticleByViewModelScope(page:Int,cid:Int){
         viewModelScope.launch {
             val articleBean = mRepository.getProjectArticle(page,cid)
+            articleBean.data.let {
+                mProjectArticleLiveData.value = it
+            }
             LogUtil.d(TAG,"articleBean $articleBean")
         }
     }
