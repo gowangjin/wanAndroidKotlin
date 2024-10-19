@@ -20,7 +20,7 @@
             android:layout_marginStart="@dimen/margin_start"/>
         <TextView
             android:id="@+id/text_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/iv_article"
             app:layout_constraintTop_toTopOf="@id/iv_article"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/text_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxHeight="@dimen/dimen_px_dp_71"
             android:layout_marginTop="@dimen/dimen_px_dp_10"
@@ -71,5 +71,12 @@
             android:layout_marginStart="@dimen/dimen_px_dp_18"
             android:textColor="@color/color_ffc8c8c8"
             android:textSize="@dimen/dimen_px_sp_12"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/color_ffc8c8c8"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginEnd="@dimen/margin_end"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

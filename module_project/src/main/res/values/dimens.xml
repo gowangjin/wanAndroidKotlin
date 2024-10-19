@@ -7,4 +7,5 @@
     <dimen name="dimen_px_dp_30">30dp</dimen>
     <dimen name="dimen_px_dp_10">10dp</dimen>
     <dimen name="dimen_px_dp_13">13dp</dimen>
+    <dimen name="project_child_max_title_width">237dp</dimen>
 </resources>

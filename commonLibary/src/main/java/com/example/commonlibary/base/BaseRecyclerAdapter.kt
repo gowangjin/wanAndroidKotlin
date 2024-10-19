@@ -8,11 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * 基础Adapter
+ */
 open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLayoutId : Int,
                                                           private val variableId : Int) :
     RecyclerView.Adapter<BaseRecyclerViewHolder>() {
     private var mDataList : MutableList<Data> = arrayListOf()
-    private lateinit var mDataBinding: VB
+    protected lateinit var mDataBinding: VB
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         mDataBinding = DataBindingUtil.inflate(layoutInflater,itemLayoutId,parent,false)
@@ -24,10 +27,14 @@ open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLay
     }
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
-        val binding : VB? = DataBindingUtil.getBinding(holder.itemView)
         val data = mDataList[position]
-        binding?.setVariable(variableId,data)
-        binding?.executePendingBindings()
+        mDataBinding.setVariable(variableId,data)
+        mDataBinding.executePendingBindings()
+        onBindViewHolder(data)
+    }
+
+    protected open fun onBindViewHolder(data: Data){
+        
     }
 
     @SuppressLint("NotifyDataSetChanged")
