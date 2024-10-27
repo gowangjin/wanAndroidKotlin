@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/home_article_height"
-        android:background="@color/color_fff5f5f5">
+        android:background="@color/color_ffffffff">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@{Bean.title}"
             android:textSize="@dimen/title_size"
-            android:textColor="@color/color_ff1f1f1f"
+            android:textColor="@color/color_ff101010"
             android:layout_marginStart="@dimen/margin_start"
             android:layout_marginEnd="@dimen/margin_end"/>
         <TextView
@@ -50,7 +50,7 @@
             android:layout_marginStart="@dimen/margin_start"
             android:layout_marginBottom="@dimen/margin_bottom"
             android:textSize="@dimen/time_size"
-            android:textColor="@color/color_ff227bfa"
+            android:textColor="@color/color_ff3291f8"
             android:text="@{Bean.superChapterName}"/>
 
         <View
