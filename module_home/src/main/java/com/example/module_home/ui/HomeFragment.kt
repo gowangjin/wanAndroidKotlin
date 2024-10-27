@@ -40,17 +40,17 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bannerLiveData = mViewModel.requestBanner()
-        bannerLiveData.observe(viewLifecycleOwner) {
-           addBanner(it)
-        }
         //请求首页文章
-        mArticleAdapter = HomeArticleListAdapter()
+        mArticleAdapter = HomeArticleListAdapter(this)
         mBinding.homeRecycler.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         mBinding.homeRecycler.adapter = mArticleAdapter
         val articleLiveData = mViewModel.requestHomeArticle(0)
         articleLiveData.observe(viewLifecycleOwner){
             LogUtil.d(TAG,"article size ${it.data.articleList.size}")
             showHomeArticle(it.data.articleList)
+        }
+        bannerLiveData.observe(viewLifecycleOwner) {
+            mArticleAdapter.addBanner(it)
         }
     }
 
@@ -61,27 +61,4 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
         mArticleAdapter.setData(articleDetailList)
     }
 
-    /**
-     * 展示轮播图
-     */
-    private fun addBanner(response: Response<List<Banner>>){
-        mBinding.homeBanner.addBannerLifecycleObserver(this)
-            .setAdapter(object : BannerImageAdapter<Banner>(response.data){
-                override fun onBindView(
-                    holder: BannerImageHolder?,
-                    data: Banner?,
-                    position: Int,
-                    size: Int
-                ) {
-                    LogUtil.d(TAG,"banner ${data?.imagePath}")
-                    holder?.let { it1 ->
-                        Glide.with(it1.itemView)
-                            .load(data?.imagePath)
-                            .into(holder.imageView)
-                    }
-                }
-            })
-            .addBannerLifecycleObserver(this)
-            .setIndicator(CircleIndicator(context)).start()
-    }
 }
