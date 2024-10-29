@@ -3,6 +3,7 @@ package com.example.module_project.ui
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.viewpager2.widget.ViewPager2
 import com.example.commonlibary.base.BaseFragment
 import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.ProjectTreeBean
@@ -35,12 +36,30 @@ class ProjectFragment @Inject constructor(): BaseFragment<FragmentProjectBinding
         mViewModel.mProjectTreeLiveData.observe(viewLifecycleOwner)
         {
             initTab(it)
+            initViewPager()
         }
         mViewModel.getProjectTreeByViewModelScope() //获取项目分类
 
     }
 
     private fun initTab(projectTreeBeanList: List<ProjectTreeBean>){
+        mBinding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                LogUtil.d(TAG, "onTabSelected ${tab?.position}")
+                tab?.let {
+                    mBinding.projectViewPager.currentItem = it.position
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                LogUtil.d(TAG,"onTabUnselected ${tab?.text}")
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                LogUtil.d(TAG,"onTabReselected ${tab?.position}")
+            }
+
+        })
         for(i in projectTreeBeanList.indices){
             val bean = projectTreeBeanList[i]
             val name = bean.name
@@ -51,11 +70,25 @@ class ProjectFragment @Inject constructor(): BaseFragment<FragmentProjectBinding
             val childFragment = ProjectChildFragment.newInstance(bean.id,i)
             mChildFragmentList.add(childFragment)
         }
-        initViewPager()
-
     }
     private fun initViewPager(){
         val viewPagerAdapter = ViewPagerAdapter(requireActivity(),mChildFragmentList)
         mBinding.projectViewPager.adapter = viewPagerAdapter
+        mBinding.projectViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                LogUtil.d(TAG,"onPageScrolled $position")
+            }
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                LogUtil.d(TAG,"onPageSelected $position")
+                mBinding.tabLayout.selectTab(mBinding.tabLayout.getTabAt(position))
+            }
+        })
     }
 }
