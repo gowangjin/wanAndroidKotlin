@@ -2,9 +2,9 @@ package com.example.commonlibary.logic.network
 
 import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.Banner
+import com.example.commonlibary.gson.NaviTreeBean
 import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.gson.Response
-import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -38,4 +38,11 @@ interface ApiService {
      */
     @GET("project/list/{page}/json")
     suspend fun getProjectArticle(@Path("page")page: Int,@Query("cid")cid:Int):Response<ArticleBean>
+
+    /**
+     * https://www.wanandroid.com/navi/json
+     * 获取导航数据
+     */
+    @GET("navi/json")
+    suspend fun getNaviTree():Response<MutableList<NaviTreeBean>>
 }

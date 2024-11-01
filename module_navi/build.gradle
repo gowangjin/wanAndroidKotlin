@@ -1,0 +1,18 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+apply from: '../dependencies.gradle'
+android {
+    namespace 'com.example.module_navi'
+    dataBinding  {
+        enabled = true
+    }
+}
+
+dependencies {
+    api project(':commonLibary')
+}

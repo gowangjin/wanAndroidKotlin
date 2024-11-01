@@ -98,3 +98,9 @@ data class ProjectTreeBean(
     val userControlSetTop: Boolean,
     val visible: Int
 )
+
+data class NaviTreeBean(
+    val articles: MutableList<ArticleDetailBean>,
+    val cid: Int,
+    val name: String
+)
