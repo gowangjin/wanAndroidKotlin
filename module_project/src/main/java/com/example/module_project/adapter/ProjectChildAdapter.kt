@@ -6,11 +6,12 @@ import com.example.commonlibary.gson.ArticleDetailBean
 import com.example.module_project.R
 import com.example.module_project.BR
 import com.example.module_project.databinding.ProjectChildItemBinding
+import javax.inject.Inject
 
 /**
  * 项目Child
  */
-class ProjectChildAdapter : BaseRecyclerAdapter<ArticleDetailBean,ProjectChildItemBinding>
+class ProjectChildAdapter @Inject constructor() : BaseRecyclerAdapter<ArticleDetailBean,ProjectChildItemBinding>
     (R.layout.project_child_item,BR.data) {
     override fun onBindViewHolder(data: ArticleDetailBean) {
         super.onBindViewHolder(data)

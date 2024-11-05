@@ -1,26 +1,21 @@
 package com.example.module_project.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.commonlibary.base.BaseFragment
 import com.example.commonlibary.util.LogUtil
-import com.example.module_project.BR
 import com.example.module_project.R
 import com.example.module_project.adapter.ProjectChildAdapter
 import com.example.module_project.databinding.FragmentChildBinding
 import com.example.module_project.logic.model.ProjectViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProjectChildFragment : BaseFragment<FragmentChildBinding,ProjectViewModel>() {
-    private val mAdapter = ProjectChildAdapter()
+    @Inject
+    lateinit var mAdapter: ProjectChildAdapter
     private var mCurrentId = -1
     private var mCurrentIndex = -1
     companion object {

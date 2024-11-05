@@ -20,7 +20,7 @@ import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
 
-class HomeArticleListAdapter(private var owner: LifecycleOwner) :
+class HomeArticleListAdapter (private var owner: LifecycleOwner) :
     BaseRecyclerAdapter<ArticleDetailBean,HomeAritcleItemLayoutBinding>(
         R.layout.home_aritcle_item_layout, BR.Bean){
     private lateinit var mBannerBinding:HomeBannerLayoutBinding

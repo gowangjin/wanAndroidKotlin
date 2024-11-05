@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="bean"
+            type="com.example.commonlibary.gson.ArticleDetailBean" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/navi_flex_box_child_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dimen_px_dp_10"
+        android:paddingEnd="@dimen/dimen_px_dp_4">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_px_sp_12"
+            android:textColor="@color/color_ff8a8a8a"
+            android:background="@drawable/flex_box_child_back_ground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingTop="@dimen/dimen_px_dp_10"
+            android:paddingBottom="@dimen/dimen_px_dp_10"
+            android:paddingStart="@dimen/dimen_px_dp_10"
+            android:paddingEnd="@dimen/dimen_px_dp_10"
+            android:text="@{bean.title}"
+            tools:text="Google开发者"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

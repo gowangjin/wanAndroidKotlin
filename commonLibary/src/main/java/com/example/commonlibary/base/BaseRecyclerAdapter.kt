@@ -7,6 +7,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.example.commonlibary.listener.IAdapterItemOnClickListener
+import com.example.commonlibary.util.LogUtil
 
 /**
  * 基础Adapter
@@ -14,8 +16,12 @@ import androidx.recyclerview.widget.RecyclerView
 open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLayoutId : Int,
                                                           private val variableId : Int) :
     RecyclerView.Adapter<BaseRecyclerViewHolder>() {
+    companion object{
+        private const val TAG = "BaseRecyclerAdapter"
+    }
     private var mDataList : MutableList<Data> = arrayListOf()
     protected lateinit var mDataBinding: VB
+    private var mItemOnClickListener: IAdapterItemOnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         mDataBinding = DataBindingUtil.inflate(layoutInflater,itemLayoutId,parent,false)
@@ -31,6 +37,10 @@ open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLay
         mDataBinding.setVariable(variableId,data)
         mDataBinding.executePendingBindings()
         onBindViewHolder(data)
+        holder.itemView.setOnClickListener {
+            LogUtil.d(TAG,"item onclick $position")
+            onItemClick(position)
+            mItemOnClickListener?.onItemClick(position) }
     }
 
     protected open fun onBindViewHolder(data: Data){
@@ -42,5 +52,12 @@ open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLay
         this.mDataList.clear()
         this.mDataList.addAll(data)
         notifyDataSetChanged()
+    }
+
+    fun addItemClickListener(listener: IAdapterItemOnClickListener){
+        mItemOnClickListener = listener
+    }
+    open fun onItemClick(position: Int){
+
     }
 }

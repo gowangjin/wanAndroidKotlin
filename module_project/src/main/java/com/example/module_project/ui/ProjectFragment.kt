@@ -2,10 +2,8 @@ package com.example.module_project.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.commonlibary.base.BaseFragment
-import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.util.LogUtil
 import com.example.module_project.R

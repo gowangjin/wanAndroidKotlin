@@ -7,9 +7,10 @@
             type="com.example.commonlibary.gson.NaviTreeBean" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_menu_root_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_px_dp_50"
-        android:background="@color/color_ffedf1f2">
+        android:background="@drawable/bg_menu_adapter">
         <TextView
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
@@ -21,10 +22,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="@dimen/dimen_px_sp_12"
             android:textColor="@color/color_ff101010"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/divider_height"
-            android:background="@color/color_ffdfdfdf"
-            app:layout_constraintBottom_toBottomOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
