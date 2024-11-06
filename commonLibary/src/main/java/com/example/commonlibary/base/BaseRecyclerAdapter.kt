@@ -20,12 +20,11 @@ open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLay
         private const val TAG = "BaseRecyclerAdapter"
     }
     private var mDataList : MutableList<Data> = arrayListOf()
-    protected lateinit var mDataBinding: VB
     private var mItemOnClickListener: IAdapterItemOnClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        mDataBinding = DataBindingUtil.inflate(layoutInflater,itemLayoutId,parent,false)
-        return BaseRecyclerViewHolder(mDataBinding.root)
+        val dataBinding : VB = DataBindingUtil.inflate(layoutInflater,itemLayoutId,parent,false)
+        return BaseRecyclerViewHolder(dataBinding.root)
     }
 
     override fun getItemCount(): Int {
@@ -34,16 +33,18 @@ open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLay
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
         val data = mDataList[position]
-        mDataBinding.setVariable(variableId,data)
-        mDataBinding.executePendingBindings()
-        onBindViewHolder(data)
+        onBindViewHolder(holder,data)
+        val dataBinding = DataBindingUtil.getBinding<VB>(holder.itemView)
         holder.itemView.setOnClickListener {
             LogUtil.d(TAG,"item onclick $position")
             onItemClick(position)
             mItemOnClickListener?.onItemClick(position) }
+
+        dataBinding?.setVariable(variableId,data)
+        dataBinding?.executePendingBindings()
     }
 
-    protected open fun onBindViewHolder(data: Data){
+    protected open fun onBindViewHolder(holder: BaseRecyclerViewHolder,data: Data){
         
     }
 
