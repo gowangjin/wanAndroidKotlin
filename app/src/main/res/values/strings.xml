@@ -4,4 +4,21 @@
     <string name="project">项目</string>
     <string name="navigation">导航</string>
     <string name="favorite">收藏</string>
+    <string name="my_favorites">我的收藏</string>
+    <string name="my_share">我的分享</string>
+    <string name="reading_record">阅读记录</string>
+    <string name="my_message">我的消息</string>
+    <string name="system_settings">系统设置</string>
+    <string name="about_me">关于我们</string>
+    <string name="search">搜索</string>
+    <string name="add_article">发表文章</string>
+    <string name="please_log_in">请登录</string>
+    <string-array name="drawers_left_title">
+        <item>我的收藏</item>
+        <item>我的分享</item>
+        <item>阅读记录</item>
+        <item>我的消息</item>
+        <item>系统设置</item>
+        <item>关于我们</item>
+    </string-array>
 </resources>

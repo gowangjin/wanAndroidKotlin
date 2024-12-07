@@ -1,5 +1,7 @@
 package com.example.commonlibary.gson
 
+import android.graphics.drawable.Drawable
+import android.widget.ImageView
 import com.google.gson.annotations.SerializedName
 
 data class Response<T>(
@@ -104,3 +106,5 @@ data class NaviTreeBean(
     val cid: Int,
     val name: String
 )
+
+data class DrawersTitleBean(val image : Drawable,val title : String)

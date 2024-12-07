@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="drawers_drawable">
+        <item>@drawable/ic_my_favorite</item>
+        <item>@drawable/ic_my_share</item>
+        <item>@drawable/ic_my_reading</item>
+        <item>@drawable/ic_my_message</item>
+        <item>@drawable/ic_system_setting</item>
+        <item>@drawable/ic_about_us</item>
+    </integer-array>
+</resources>

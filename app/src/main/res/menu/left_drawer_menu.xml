@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/my_favorites"
+            android:title="@string/my_favorites"/>
+        <item
+            android:id="@+id/share"
+            android:title="@string/my_share"/>
+        <item
+            android:id="@+id/reading_record"
+            android:title="@string/reading_record"/>
+        <item
+            android:id="@+id/my_message"
+            android:title="@string/my_message"/>
+        <item
+            android:id="@+id/system_settings"
+            android:title="@string/system_settings"/>
+        <item
+            android:id="@+id/about_me"
+            android:title="@string/about_me"/>
+    </group>
+</menu>

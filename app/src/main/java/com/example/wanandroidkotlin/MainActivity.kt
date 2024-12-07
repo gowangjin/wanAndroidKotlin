@@ -2,12 +2,15 @@ package com.example.wanandroidkotlin
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.util.LogUtil
 import com.example.module_home.ui.HomeFragment
 import com.example.module_navi.ui.NaviFragment
 import com.example.module_project.ui.ProjectFragment
+import com.example.wanandroidkotlin.adapter.DrawersLayoutAdapter
 import com.example.wanandroidkotlin.adapter.MainViewPagerAdapter
 import com.example.wanandroidkotlin.databinding.MainActivityBinding
 import com.example.wanandroidkotlin.logic.MainActivityViewModel
@@ -26,6 +29,8 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
     lateinit var mProjectFragment: ProjectFragment
     @Inject
     lateinit var mNaviFragment: NaviFragment
+    @Inject
+    lateinit var mDrawersLayoutAdapter: DrawersLayoutAdapter
     override fun getLayoutId(): Int {
         return R.layout.main_activity
     }
@@ -33,6 +38,7 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogUtil.d(TAG, "onCreate: ")
+        mBinding.setVariable(BR.activity,this)
         window.statusBarColor = ContextCompat.getColor(this, com.example.commonlibary.R.color.color_ff227bfa)
         val fragmentList = arrayListOf<Fragment>()
         fragmentList.add(mHomeFragment)
@@ -51,9 +57,33 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
             }
             true
         }
+        initDrawerLayout()
+        initToolBar()
     }
 
     override fun providerVMClass(): Class<MainActivityViewModel> {
         return MainActivityViewModel::class.java
+    }
+
+    private fun initToolBar(){
+        mBinding.toolBar.setNavigationOnClickListener {
+            if(!mBinding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+                mBinding.drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+    }
+
+    private fun initDrawerLayout(){
+        val mData = mViewModel.getDrawersListData(this)
+        mBinding.leftDrawer.drawerList.adapter = mDrawersLayoutAdapter
+        mBinding.leftDrawer.drawerList.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        mDrawersLayoutAdapter.setData(mData)
+    }
+
+    /**
+     *关闭侧滑栏
+     */
+    fun closeDrawerLayout(){
+        mBinding.drawerLayout.closeDrawers()
     }
 }
