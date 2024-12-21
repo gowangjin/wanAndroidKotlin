@@ -5,7 +5,10 @@
     <data>
         <variable
             name="bean"
-            type="com.example.commonlibary.gson.ArticleDetailBean" />
+            type="com.example.commonlibary.gson.ArticleDetailBean"/>
+        <variable
+            name="ChildView"
+            type="com.example.module_navi.ui.FlexBoxChildView"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/navi_flex_box_child_layout"
@@ -27,6 +30,7 @@
             android:paddingStart="@dimen/dimen_px_dp_10"
             android:paddingEnd="@dimen/dimen_px_dp_10"
             android:text="@{bean.title}"
+            android:onClick="@{() -> ChildView.showWebView(bean.link)}"
             tools:text="Google开发者"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

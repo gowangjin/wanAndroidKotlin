@@ -3,7 +3,10 @@ package com.example.module_project.ui
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlibary.base.BaseFragment
+import com.example.commonlibary.constant.Constant
+import com.example.commonlibary.listener.IAdapterItemOnClickListener
 import com.example.commonlibary.util.LogUtil
 import com.example.module_project.R
 import com.example.module_project.adapter.ProjectChildAdapter
@@ -31,6 +34,15 @@ class ProjectChildFragment : BaseFragment<FragmentChildBinding,ProjectViewModel>
             return fragment
         }
     }
+    private val mAdapterListener : IAdapterItemOnClickListener =
+        object : IAdapterItemOnClickListener {
+            override fun onItemClick(position: Int) {
+                LogUtil.d(TAG,"onItemClick position: $position")
+                val data = mAdapter.getPositionData(position)
+                showWebView(data.link)
+            }
+
+        }
     override fun getLayoutId(): Int {
         return R.layout.fragment_child
     }
@@ -47,6 +59,7 @@ class ProjectChildFragment : BaseFragment<FragmentChildBinding,ProjectViewModel>
     }
 
     private fun initView(){
+        mAdapter.addItemClickListener(mAdapterListener)
         mBinding.listView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         mBinding.listView.adapter = mAdapter
     }

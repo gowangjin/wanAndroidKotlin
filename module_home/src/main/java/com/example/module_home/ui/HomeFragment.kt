@@ -3,9 +3,7 @@ package com.example.module_home.ui
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlibary.base.BaseFragment
-import com.example.commonlibary.constant.Constant
 import com.example.commonlibary.gson.ArticleDetailBean
 import com.example.commonlibary.listener.IAdapterItemOnClickListener
 import com.example.commonlibary.util.LogUtil
@@ -57,10 +55,7 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
         override fun onItemClick(position: Int) {
             LogUtil.d(TAG, "onItemClick $position")
             val data = mArticleAdapter.getPositionData(position)
-            ARouter.getInstance()
-                .build(Constant.PATH_WEB)
-                .withString(Constant.WEB_LINK,data.link)
-                .navigation()
+            showWebView(data.link)
         }
 
     }
