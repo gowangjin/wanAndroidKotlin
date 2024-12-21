@@ -1,5 +1,6 @@
 package com.example.wanandroidkotlin
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -10,6 +11,7 @@ import com.example.commonlibary.util.LogUtil
 import com.example.module_home.ui.HomeFragment
 import com.example.module_navi.ui.NaviFragment
 import com.example.module_project.ui.ProjectFragment
+import com.example.module_search.ui.SearchActivity
 import com.example.wanandroidkotlin.adapter.DrawersLayoutAdapter
 import com.example.wanandroidkotlin.adapter.MainViewPagerAdapter
 import com.example.wanandroidkotlin.databinding.MainActivityBinding
@@ -85,5 +87,13 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
      */
     fun closeDrawerLayout(){
         mBinding.drawerLayout.closeDrawers()
+    }
+
+    /**
+     * 搜索
+     */
+    fun onClickSearch(){
+        val intent = Intent(this,SearchActivity::class.java)
+        startActivity(intent)
     }
 }

@@ -37,7 +37,8 @@
                     android:layout_height="@dimen/dimen_px_dp_30"
                     android:src="@drawable/ic_search"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/dimen_px_dp_10"/>
+                    android:layout_marginEnd="@dimen/dimen_px_dp_10"
+                    android:onClick="@{() -> activity.onClickSearch()}"/>
             </androidx.appcompat.widget.Toolbar>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
