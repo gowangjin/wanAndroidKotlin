@@ -3,6 +3,7 @@ package com.example.moudle_web.ui
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebChromeClient
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
@@ -12,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.constant.Constant
 import com.example.commonlibary.util.LogUtil
+import com.example.moudle_web.BR
 import com.example.moudle_web.R
 import com.example.moudle_web.databinding.ActivityWebBinding
 import com.example.moudle_web.model.WebViewModel
@@ -19,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 @Route(path = Constant.PATH_WEB)
-class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>() {
+class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>(),View.OnClickListener {
     companion object{
         private const val TAG = "WebActivity"
     }
@@ -33,6 +35,7 @@ class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>() {
         initWebViewSettings()
         initWebViewClient()
         initWebChromeClient()
+        mBinding.setVariable(BR.WebActivity,this)
         LogUtil.d(TAG,"web link $articleLink")
         mBinding.webContent.loadUrl(articleLink)
     }
@@ -103,5 +106,10 @@ class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>() {
                 super.onProgressChanged(view, newProgress)
             }
         }
+    }
+
+    override fun onClick(v: View?) {
+        LogUtil.d(TAG,"onClick ${v?.id}")
+        finish()
     }
 }

@@ -58,6 +58,7 @@ dependencies {
     def ktx_version = "1.8.0"
     def flexbox_version = "3.0.0"
     def arouter_version = "1.5.2"
+    //ARouter
     implementation "com.alibaba:arouter-api:$arouter_version"
     kapt "com.alibaba:arouter-compiler:$arouter_version"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
