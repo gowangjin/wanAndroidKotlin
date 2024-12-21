@@ -3,9 +3,7 @@ package com.example.module_project.ui
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlibary.base.BaseFragment
-import com.example.commonlibary.constant.Constant
 import com.example.commonlibary.listener.IAdapterItemOnClickListener
 import com.example.commonlibary.util.LogUtil
 import com.example.module_project.R
