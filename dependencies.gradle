@@ -1,4 +1,4 @@
-apply plugin : 'org.jetbrains.kotlin.android'
+//apply plugin : 'org.jetbrains.kotlin.android'
 
 android {
     compileSdk 33
@@ -13,6 +13,16 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        kapt {
+            arguments {
+                //根据模块名来命名路由根节点
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+    }
+    hilt{
+        enableExperimentalClasspathAggregation = true
+        enableAggregatingTask = false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,6 +57,9 @@ dependencies {
     def coroutines_version = "1.5.1"
     def ktx_version = "1.8.0"
     def flexbox_version = "3.0.0"
+    def arouter_version = "1.5.2"
+    implementation "com.alibaba:arouter-api:$arouter_version"
+    kapt "com.alibaba:arouter-compiler:$arouter_version"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.core:core-ktx:1.8.0'

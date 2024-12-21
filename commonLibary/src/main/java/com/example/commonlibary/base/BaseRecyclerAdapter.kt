@@ -61,4 +61,11 @@ open class BaseRecyclerAdapter<Data,VB : ViewDataBinding>(@LayoutRes val itemLay
     open fun onItemClick(position: Int){
 
     }
+
+    /**
+     * 获取指定Item数据
+     */
+    fun getPositionData(position:Int):Data{
+        return mDataList[position]
+    }
 }
