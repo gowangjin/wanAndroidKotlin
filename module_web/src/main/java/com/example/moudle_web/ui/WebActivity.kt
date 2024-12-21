@@ -9,6 +9,8 @@ import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.constant.Constant
@@ -18,6 +20,7 @@ import com.example.moudle_web.R
 import com.example.moudle_web.databinding.ActivityWebBinding
 import com.example.moudle_web.model.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 @Route(path = Constant.PATH_WEB)
@@ -31,6 +34,7 @@ class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>(),View.OnClick
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initStatusBar()
         val articleLink = intent.getStringExtra(Constant.WEB_LINK).toString()
         initWebViewSettings()
         initWebViewClient()
@@ -55,6 +59,7 @@ class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>(),View.OnClick
             //设置自适应屏幕，两者合用
             it.useWideViewPort = true // 将图片调整刀合适WebView的大小
             it.loadWithOverviewMode = true //缩放至屏幕的大小
+            it.domStorageEnabled = true //启用DOM存储
         }
     }
 
@@ -111,5 +116,14 @@ class WebActivity : BaseActivity<ActivityWebBinding,WebViewModel>(),View.OnClick
     override fun onClick(v: View?) {
         LogUtil.d(TAG,"onClick ${v?.id}")
         finish()
+    }
+
+    /**
+     * 初始化状态栏，白色
+     */
+    private fun initStatusBar(){
+        window.statusBarColor = ContextCompat.getColor(this, com.example.commonlibary.R.color.color_ffffffff)
+        val windowController = WindowCompat.getInsetsController(window,mBinding.root)
+        windowController.isAppearanceLightStatusBars = true
     }
 }
