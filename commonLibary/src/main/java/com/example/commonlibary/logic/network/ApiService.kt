@@ -5,6 +5,7 @@ import com.example.commonlibary.gson.Banner
 import com.example.commonlibary.gson.NaviTreeBean
 import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.gson.Response
+import com.example.commonlibary.gson.SearchHotKeyWord
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -45,4 +46,10 @@ interface ApiService {
      */
     @GET("navi/json")
     suspend fun getNaviTree():Response<MutableList<NaviTreeBean>>
+
+    /**
+     * 获取搜索热词
+     */
+    @GET("hotkey/json")
+    suspend fun getSearchHotKeyWords():Response<MutableList<SearchHotKeyWord>>
 }

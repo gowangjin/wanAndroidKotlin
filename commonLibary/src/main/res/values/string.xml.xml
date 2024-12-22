@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="play_android">玩Android</string>
+    <string name="search_hot_keyword">热门搜索</string>
 </resources>

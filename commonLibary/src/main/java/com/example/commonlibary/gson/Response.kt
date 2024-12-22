@@ -1,7 +1,6 @@
 package com.example.commonlibary.gson
 
 import android.graphics.drawable.Drawable
-import android.widget.ImageView
 import com.google.gson.annotations.SerializedName
 
 data class Response<T>(
@@ -108,3 +107,13 @@ data class NaviTreeBean(
 )
 
 data class DrawersTitleBean(val image : Drawable,val title : String)
+
+/**
+ * 搜索热词
+ */
+data class SearchHotKeyWord(
+    val id: Int,
+    val link: String,
+    val name: String,
+    val order: Int,
+    val visible: Int)

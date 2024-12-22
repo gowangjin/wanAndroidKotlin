@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="data"
+            type="com.example.commonlibary.gson.SearchHotKeyWord" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dimen_px_dp_10"
+        android:paddingEnd="@dimen/dimen_px_dp_12">
+        <TextView
+            android:id="@+id/text_flex_box_name"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_px_dp_30"
+            android:background="@drawable/bg_radius_100_gray"
+            android:textSize="@dimen/dimen_px_sp_12"
+            android:textColor="@color/color_ff8a8a8a"
+            android:paddingStart="@dimen/dimen_px_dp_12"
+            android:paddingEnd="@dimen/dimen_px_dp_12"
+            android:gravity="center_vertical"
+            android:text="@{data.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="面试"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
