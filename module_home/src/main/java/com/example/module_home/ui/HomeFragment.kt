@@ -5,11 +5,13 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.commonlibary.base.BaseFragment
 import com.example.commonlibary.gson.ArticleDetailBean
+import com.example.commonlibary.gson.Banner
 import com.example.commonlibary.listener.IAdapterItemOnClickListener
 import com.example.commonlibary.util.LogUtil
 import com.example.module_home.R
 import com.example.module_home.adapter.HomeArticleListAdapter
 import com.example.module_home.databinding.FragmentHomeBinding
+import com.youth.banner.listener.OnBannerListener
 import dagger.hilt.android.AndroidEntryPoint
 import logic.model.HomeViewModel
 import javax.inject.Inject
@@ -40,7 +42,7 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
             showHomeArticle(it.data.articleList)
         }
         bannerLiveData.observe(viewLifecycleOwner) {
-            mArticleAdapter.addBanner(it)
+            mArticleAdapter.addBanner(it,mBannerListener)
         }
     }
 
@@ -59,4 +61,9 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
         }
 
     }
-}
+
+    private val mBannerListener =
+        OnBannerListener<Banner> { data, position ->
+            showWebView(data.url)
+        }
+ }

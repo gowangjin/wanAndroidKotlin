@@ -19,6 +19,7 @@ import com.example.module_home.databinding.HomeBannerLayoutBinding
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
+import com.youth.banner.listener.OnBannerListener
 
 class HomeArticleListAdapter (private var owner: LifecycleOwner) :
     BaseRecyclerAdapter<ArticleDetailBean,HomeAritcleItemLayoutBinding>(
@@ -61,7 +62,7 @@ class HomeArticleListAdapter (private var owner: LifecycleOwner) :
     /**
      * 展示轮播图
      */
-    fun addBanner(response: Response<List<Banner>>){
+    fun addBanner(response: Response<List<Banner>>,bannerListener: OnBannerListener<Banner>){
         mBannerBinding.homeBanner
             .addBannerLifecycleObserver(owner)
             .setAdapter(object : BannerImageAdapter<Banner>(response.data){
@@ -75,6 +76,7 @@ class HomeArticleListAdapter (private var owner: LifecycleOwner) :
                 }
             })
             .addBannerLifecycleObserver(owner)
+            .setOnBannerListener(bannerListener)
             .setIndicator(CircleIndicator(mContext)).start()
     }
     }

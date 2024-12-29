@@ -14,6 +14,7 @@
     <dimen name="dimen_px_sp_12">12sp</dimen>
     <dimen name="dimen_px_sp_14">14sp</dimen>
     <dimen name="dimen_px_sp_16">16sp</dimen>
+    <dimen name="dimen_px_dp_1">1dp</dimen>
     <dimen name="dimen_px_dp_2">2dp</dimen>
     <dimen name="dimen_px_dp_6">6dp</dimen>
     <dimen name="dimen_px_dp_8">8dp</dimen>
