@@ -1,5 +1,6 @@
 package com.example.module_search.logic.model
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.commonlibary.base.BaseViewModel
@@ -15,6 +16,8 @@ import javax.inject.Inject
 class SearchModel @Inject constructor():BaseViewModel() {
     @Inject
     lateinit var mRepository : SearchRepository
+    // 定义输入框内容输入的可观察字段
+    public val mInputContent = ObservableField<String>()
     val mHotKeyWordMutableList = MutableLiveData<MutableList<SearchHotKeyWord>>()
     companion object{
         private const val TAG = "SearchModel"
@@ -31,6 +34,22 @@ class SearchModel @Inject constructor():BaseViewModel() {
                 if(it.errorCode == ErrorCode.OK && keyWordList.isNotEmpty()){
                     mHotKeyWordMutableList.value = keyWordList
                 }
+            }
+        }
+    }
+
+    /**
+     * 发起搜索
+     */
+    fun startKeyWordSearch(){
+        viewModelScope.launch {
+            val keyWord = mInputContent.get()
+            if(!keyWord.isNullOrEmpty()){
+                LogUtil.d(TAG,"keyWord $keyWord")
+                val searchResult = mRepository.getSearchResult(keyWord,0)
+                LogUtil.d(TAG,"startKeyWordSearch $searchResult")
+            } else {
+                LogUtil.d(TAG,"keyWord is null")
             }
         }
     }

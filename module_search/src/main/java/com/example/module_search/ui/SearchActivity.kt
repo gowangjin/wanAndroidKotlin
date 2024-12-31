@@ -1,7 +1,10 @@
 package com.example.module_search.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.view.View
 import com.example.commonlibary.base.BaseActivity
+import com.example.commonlibary.base.SimpleTextWatcher
 import com.example.commonlibary.util.LogUtil
 import com.example.module_search.BR
 import com.example.module_search.R
@@ -14,6 +17,15 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
     companion object{
         private const val TAG = "SearchActivity"
     }
+    val mEditTextWatcher = object : SimpleTextWatcher() {
+        override fun afterTextChanged(s: Editable?) {
+            super.afterTextChanged(s)
+            LogUtil.d(TAG,"afterTextChanged $s")
+            val length = s?.length ?: 0
+            mBinding.ivClearSearch.visibility = if(length > 0)
+                View.VISIBLE else View.GONE
+        }
+    }
     override fun getLayoutId(): Int {
         return R.layout.activity_search
     }
@@ -21,11 +33,13 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding.setVariable(BR.SearchActivity,this)
+        mBinding.setVariable(BR.SearchModel,mViewModel)
     }
 
     override fun onStart() {
         super.onStart()
         initHotKeyWords()
+        mBinding.searchEditText.addTextChangedListener(mEditTextWatcher)
     }
 
     override fun providerVMClass(): Class<SearchModel> {
@@ -42,5 +56,9 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
             }
         }
         mViewModel.getHotKeyWords()
+    }
+
+    fun clearEditTextInput(){
+        mBinding.searchEditText.text = null
     }
 }

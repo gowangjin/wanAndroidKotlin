@@ -7,7 +7,10 @@ import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.gson.Response
 import com.example.commonlibary.gson.SearchHotKeyWord
 import retrofit2.Call
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -52,4 +55,12 @@ interface ApiService {
      */
     @GET("hotkey/json")
     suspend fun getSearchHotKeyWords():Response<MutableList<SearchHotKeyWord>>
+
+    /**
+     * 搜索
+     * https://www.wanandroid.com/article/query/0/json
+     */
+    @POST("article/query/{pageNum}/json")
+    @FormUrlEncoded
+    suspend fun getSearchResult(@Path("pageNum") pageNum: Int,@Field("k") k :String):Response<ArticleBean>
 }
