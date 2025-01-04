@@ -39,9 +39,11 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
         val articleLiveData = mViewModel.requestHomeArticle(0)
         articleLiveData.observe(viewLifecycleOwner){
             LogUtil.d(TAG,"article size ${it.data.articleList.size}")
+            onVisibleFailure()
             showHomeArticle(it.data.articleList)
         }
         bannerLiveData.observe(viewLifecycleOwner) {
+            onVisibleFailure()
             mArticleAdapter.addBanner(it,mBannerListener)
         }
     }
@@ -51,6 +53,12 @@ class HomeFragment @Inject constructor() :BaseFragment<FragmentHomeBinding, Home
      */
     private fun showHomeArticle(articleDetailList:MutableList<ArticleDetailBean>){
         mArticleAdapter.setData(articleDetailList)
+    }
+
+    private fun onVisibleFailure(){
+        if(View.GONE != mBinding.ivRequestFailure.visibility){
+            mBinding.ivRequestFailure.visibility = View.GONE
+        }
     }
 
     private val mAdapterChangeListener = object : IAdapterItemOnClickListener{
