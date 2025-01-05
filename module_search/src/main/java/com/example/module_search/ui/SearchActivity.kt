@@ -3,21 +3,26 @@ package com.example.module_search.ui
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.base.SimpleTextWatcher
 import com.example.commonlibary.util.LogUtil
 import com.example.module_search.BR
 import com.example.module_search.R
+import com.example.module_search.adapter.SearchResultAdapter
 import com.example.module_search.databinding.ActivitySearchBinding
 import com.example.module_search.logic.model.SearchModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
     companion object{
         private const val TAG = "SearchActivity"
     }
-    val mEditTextWatcher = object : SimpleTextWatcher() {
+    @Inject
+    lateinit var mSearchResultAdapter:SearchResultAdapter
+    private val mEditTextWatcher = object : SimpleTextWatcher() {
         override fun afterTextChanged(s: Editable?) {
             super.afterTextChanged(s)
             LogUtil.d(TAG,"afterTextChanged $s")
@@ -38,12 +43,21 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
 
     override fun onStart() {
         super.onStart()
+        initView()
         initHotKeyWords()
+        initObserve()
         mBinding.searchEditText.addTextChangedListener(mEditTextWatcher)
     }
 
     override fun providerVMClass(): Class<SearchModel> {
         return SearchModel::class.java
+    }
+
+    private fun initView(){
+        mBinding.searchResultList.let {
+            it.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+            it.adapter = mSearchResultAdapter
+        }
     }
 
     private fun initHotKeyWords(){
@@ -60,5 +74,20 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
 
     fun clearEditTextInput(){
         mBinding.searchEditText.text = null
+    }
+
+    private fun initObserve(){
+        mViewModel.mSearchResultLiveData.observe(this) {
+            if(it != null && it.size > 0){
+                LogUtil.d(TAG,"initObserve $it")
+                mBinding.smartRefreshLayout.visibility = View.VISIBLE
+                mSearchResultAdapter.setData(it)
+                mBinding.searchHotKeywordLayout.visibility = View.GONE
+            } else {
+                mBinding.ivSearchResultNull.visibility = View.VISIBLE
+                mBinding.searchHotKeywordLayout.visibility = View.GONE
+                mBinding.smartRefreshLayout.visibility = View.GONE
+            }
+        }
     }
 }
