@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.base.SimpleTextWatcher
+import com.example.commonlibary.constant.Constant
+import com.example.commonlibary.listener.IAdapterItemOnClickListener
 import com.example.commonlibary.util.LogUtil
 import com.example.module_search.BR
 import com.example.module_search.R
@@ -16,7 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
+class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>(),
+    IAdapterItemOnClickListener {
     companion object{
         private const val TAG = "SearchActivity"
     }
@@ -57,6 +61,7 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
         mBinding.searchResultList.let {
             it.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
             it.adapter = mSearchResultAdapter
+            mSearchResultAdapter.addItemClickListener(this)
         }
     }
 
@@ -88,6 +93,17 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>() {
                 mBinding.searchHotKeywordLayout.visibility = View.GONE
                 mBinding.smartRefreshLayout.visibility = View.GONE
             }
+        }
+    }
+
+    override fun onItemClick(position: Int) {
+        val dataList = mViewModel.mSearchResultLiveData.value
+        if(dataList != null && position < dataList.size){
+            val data = dataList[position]
+            ARouter.getInstance()
+                .build(Constant.PATH_WEB)
+                .withString(Constant.WEB_LINK,data.link)
+                .navigation()
         }
     }
 }
