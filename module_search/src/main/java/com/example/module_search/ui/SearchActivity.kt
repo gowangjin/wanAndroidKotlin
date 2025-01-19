@@ -8,12 +8,14 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.base.SimpleTextWatcher
 import com.example.commonlibary.constant.Constant
+import com.example.commonlibary.gson.SearchHotKeyWord
 import com.example.commonlibary.listener.IAdapterItemOnClickListener
 import com.example.commonlibary.util.LogUtil
 import com.example.module_search.BR
 import com.example.module_search.R
 import com.example.module_search.adapter.SearchResultAdapter
 import com.example.module_search.databinding.ActivitySearchBinding
+import com.example.module_search.listener.IHotWordOnclickListener
 import com.example.module_search.logic.model.SearchModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -69,7 +71,15 @@ class SearchActivity : BaseActivity<ActivitySearchBinding,SearchModel>(),
         mViewModel.mHotKeyWordMutableList.observe(this) {
             for(i in it.indices){
                 LogUtil.d(TAG,"initHotKeyWords ${it[i]}")
-                val childView = SearchFlexBoxChildView(this)
+                val childView = SearchFlexBoxChildView(this, object : IHotWordOnclickListener {
+                    override fun onClick(data: SearchHotKeyWord) {
+                        data.let {
+                            if(data.name.isNotEmpty()){
+                                mBinding.searchEditText.setText(data.name)
+                            }
+                        }
+                    }
+                })
                 childView.setData(it[i])
                 mBinding.searchFlexBoxLayout.addView(childView)
             }
