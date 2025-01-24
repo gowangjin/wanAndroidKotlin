@@ -26,4 +26,5 @@ dependencies {
     implementation project(':module_navi')
     implementation project(':module_web')
     implementation project(':module_search')
+    implementation project(':module_favorite')
 }

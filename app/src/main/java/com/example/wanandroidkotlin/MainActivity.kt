@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.util.LogUtil
+import com.example.module_favorite.ui.FavoriteFragment
 import com.example.module_home.ui.HomeFragment
 import com.example.module_navi.ui.NaviFragment
 import com.example.module_project.ui.ProjectFragment
@@ -32,7 +33,10 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
     @Inject
     lateinit var mNaviFragment: NaviFragment
     @Inject
+    lateinit var mFavoriteFragment: FavoriteFragment
+    @Inject
     lateinit var mDrawersLayoutAdapter: DrawersLayoutAdapter
+
     override fun getLayoutId(): Int {
         return R.layout.main_activity
     }
@@ -46,6 +50,7 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
         fragmentList.add(mHomeFragment)
         fragmentList.add(mProjectFragment)
         fragmentList.add(mNaviFragment)
+        fragmentList.add(mFavoriteFragment)
         mMainViewPagerAdapter = MainViewPagerAdapter(this,fragmentList)
         mBinding.viewPager.isUserInputEnabled = false
         mBinding.viewPager.adapter = mMainViewPagerAdapter
@@ -55,7 +60,7 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
                 R.id.home -> mBinding.viewPager.currentItem = 0
                 R.id.project -> mBinding.viewPager.currentItem = 1
                 R.id.navigation -> mBinding.viewPager.currentItem = 2
-//                R.id.favorite -> mBinding.viewPager.currentItem = 3
+                R.id.favorite -> mBinding.viewPager.currentItem = 3
             }
             true
         }
