@@ -58,6 +58,8 @@ dependencies {
     def ktx_version = "1.8.0"
     def flexbox_version = "3.0.0"
     def arouter_version = "1.5.2"
+    def material_version = "1.8.0"
+
     //ARouter
     implementation "com.alibaba:arouter-api:$arouter_version"
     kapt "com.alibaba:arouter-compiler:$arouter_version"
@@ -76,7 +78,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //BottomNavigationView
-    implementation 'com.google.android.material:material:1.0.0-alpha1'
+    implementation "com.google.android.material:material:$material_version"
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     //retrofit的数据适配器，支持Gson、jackson、java8、scalar等等，也可以自定义

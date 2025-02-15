@@ -8,9 +8,6 @@ apply from: '../dependencies.gradle'
 
 android {
     namespace 'com.example.module_home'
-    dataBinding  {
-        enabled = true
-    }
 }
 
 dependencies {

@@ -10,6 +10,7 @@ import com.example.commonlibary.base.BaseActivity
 import com.example.commonlibary.util.LogUtil
 import com.example.module_favorite.ui.FavoriteFragment
 import com.example.module_home.ui.HomeFragment
+import com.example.module_login.ui.LoginActivity
 import com.example.module_navi.ui.NaviFragment
 import com.example.module_project.ui.ProjectFragment
 import com.example.module_search.ui.SearchActivity
@@ -99,6 +100,15 @@ class MainActivity : BaseActivity<MainActivityBinding,MainActivityViewModel>() {
      */
     fun onClickSearch(){
         val intent = Intent(this,SearchActivity::class.java)
+        startActivity(intent)
+    }
+
+    /**
+     * 登录
+     */
+    fun startLoginActivity(){
+        LogUtil.d(TAG,"startLoginActivity")
+        val intent = Intent(this,LoginActivity::class.java)
         startActivity(intent)
     }
 }
