@@ -36,28 +36,40 @@
             android:text="@string/play_android"
             android:textStyle="bold"
             android:textSize="@dimen/dimen_px_sp_18"/>
-        <EditText
-            android:id="@+id/ed_login_account"
-            android:layout_width="@dimen/dimen_px_dp_300"
-            android:layout_height="@dimen/dimen_px_dp_45"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_login_account_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_px_dp_60"
-            android:hint="@string/account"
-            tools:text="wangjin"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_login_icon"
-            android:inputType="text" />
-        <EditText
-            android:id="@+id/ed_login_password"
-            android:layout_width="@dimen/dimen_px_dp_300"
-            android:layout_height="@dimen/dimen_px_dp_45"
+            app:hintEnabled="true"
+            app:hintAnimationEnabled="true"
+            android:hint="@string/please_enter_your_account">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_login_account"
+                android:layout_width="@dimen/dimen_px_dp_300"
+                android:layout_height="@dimen/dimen_px_dp_45" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ed_login_password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_px_dp_20"
+            android:gravity="center"
             android:hint="@string/password"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="12ee44"
-            app:layout_constraintTop_toBottomOf="@id/ed_login_account"
-            android:inputType="textPassword"/>
+            app:layout_constraintTop_toBottomOf="@id/ed_login_account_layout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_login_password"
+                android:layout_width="@dimen/dimen_px_dp_300"
+                android:layout_height="@dimen/dimen_px_dp_45"
+                tools:text="12ee44"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/bt_login"
             android:layout_width="@dimen/dimen_px_dp_300"
@@ -67,7 +79,7 @@
             android:layout_marginTop="@dimen/dimen_px_dp_20"
             android:text="@string/login"
             android:background="@drawable/bg_btn_blue"
-            app:layout_constraintTop_toBottomOf="@id/ed_login_password"/>
+            app:layout_constraintTop_toBottomOf="@id/ed_login_password_layout"/>
         <Button
             android:layout_width="@dimen/dimen_px_dp_300"
             android:layout_height="@dimen/dimen_px_dp_50"

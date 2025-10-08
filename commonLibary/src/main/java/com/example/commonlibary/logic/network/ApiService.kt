@@ -2,6 +2,7 @@ package com.example.commonlibary.logic.network
 
 import com.example.commonlibary.gson.ArticleBean
 import com.example.commonlibary.gson.Banner
+import com.example.commonlibary.gson.LoginBean
 import com.example.commonlibary.gson.NaviTreeBean
 import com.example.commonlibary.gson.ProjectTreeBean
 import com.example.commonlibary.gson.Response
@@ -63,4 +64,12 @@ interface ApiService {
     @POST("article/query/{pageNum}/json")
     @FormUrlEncoded
     suspend fun getSearchResult(@Path("pageNum") pageNum: Int,@Field("k") k :String):Response<ArticleBean>
+
+    /**
+     * https://www.wanandroid.com/user/login
+     * 登录
+     */
+    @POST("user/login")
+    @FormUrlEncoded
+    suspend fun login(@Field("username") username : String,@Field("password") password: String):Response<LoginBean>
 }
